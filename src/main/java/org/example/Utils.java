@@ -14,6 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Utils extends BrowserManager{
+
+
     public static void clickOnElement(By by)
     {
         driver.findElement(by).click();
@@ -51,6 +53,25 @@ public class Utils extends BrowserManager{
     public static void selectDropDownByVisibleText(By by, String year){
         Select select_year = new Select(driver.findElement(by));
         select_year.selectByVisibleText(year);
+    }
+
+    public static void registerUser(){
+        HomePage homePage = new HomePage();
+        RegistrationResultPage registrationResultPage = new RegistrationResultPage();
+        RegistrationPage registrationPage = new RegistrationPage();
+
+        //click on register button
+        homePage.clickOnRegisterButton();
+        // verify user is on registration page
+        registrationPage.verifyUserIsOnRegisterPage();
+        // Type User Details
+        registrationPage.userEntersRegistrationDetails();
+        // click on register button
+        registrationPage.clickOnRegisterButton();
+        //verify user is on register Successful page
+        registrationResultPage.verifyUserIsOnRegisterSuccessPage();
+        //Verify user has successfully registered
+        registrationResultPage.verifyUserHasSuccessfullyRegistered();
     }
 
     public static void captureScreenshot(String fileName)

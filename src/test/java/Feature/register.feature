@@ -2,7 +2,7 @@ Feature: Registration
 
   As a user, I want to register on DemoNopeCommerce website
   So that, I can use all user features
-  @smoke
+  @test
   Scenario: User should able to register successfully
 
     Given user is on registration page

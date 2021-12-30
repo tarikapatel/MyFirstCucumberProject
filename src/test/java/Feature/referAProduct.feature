@@ -3,7 +3,7 @@ Feature: Refer Product
   As a user,
   I want to refer a product to a friend
   So that, I can recommend the product to a friend
-  @test
+  @smoke
   Scenario: User should be able to refer a product to a friend
 
     Given user is registered successfully

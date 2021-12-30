@@ -7,6 +7,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,25 +56,6 @@ public class Utils extends BrowserManager{
         select_year.selectByVisibleText(year);
     }
 
-    public static void registerUser(){
-        HomePage homePage = new HomePage();
-        RegistrationResultPage registrationResultPage = new RegistrationResultPage();
-        RegistrationPage registrationPage = new RegistrationPage();
-
-        //click on register button
-        homePage.clickOnRegisterButton();
-        // verify user is on registration page
-        registrationPage.verifyUserIsOnRegisterPage();
-        // Type User Details
-        registrationPage.userEntersRegistrationDetails();
-        // click on register button
-        registrationPage.clickOnRegisterButton();
-        //verify user is on register Successful page
-        registrationResultPage.verifyUserIsOnRegisterSuccessPage();
-        //Verify user has successfully registered
-        registrationResultPage.verifyUserHasSuccessfullyRegistered();
-    }
-
     public static void captureScreenshot(String fileName)
     {
         //convert web driver object to TakeScreenshot
@@ -88,5 +70,9 @@ public class Utils extends BrowserManager{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void verifyCurrentURL(String page_url) {
+        Assert.assertTrue(driver.getCurrentUrl().equals(page_url));
     }
 }

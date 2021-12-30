@@ -14,6 +14,7 @@ public class MyStepDefs {
     BuildYourOwnComputer buildYourOwnComputer = new BuildYourOwnComputer();
     ProductEmailAFriend productEmailAFriend = new ProductEmailAFriend();
     Utils utils = new Utils();
+    CategoryURLPage categoryURLPage = new CategoryURLPage();
 
     //Steps for user register successfully
     @Given("user is on registration page")
@@ -146,5 +147,22 @@ public class MyStepDefs {
     public void user_should_be_able_to_refer_a_product_to_a_friend_successfully() {
         //verify user has successfully sent the email
         productEmailAFriend.verifyUserHasSuccessfullySentEmailToAFriend();
+    }
+
+    @Given("I am on homepage")
+    public void i_am_on_homepage() {
+
+    }
+    @When("I click on {string} button")
+    public void i_click_on_button(String category) {
+        homePage.clickOnCategoryButton(category);
+    }
+    @Then("I should able to verify the {string} accordingly")
+    public void i_should_able_to_verify_the_accordingly(String page_URL) {
+    Utils.verifyCurrentURL(page_URL);
+    }
+    @Then("I should be able to verify the page title as {string} accordingly")
+    public void i_should_be_able_to_verify_the_page_title_as_accordingly(String text) {
+        categoryURLPage.verifyCategoryTitle(text);
     }
 }

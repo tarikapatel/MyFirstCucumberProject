@@ -3,6 +3,7 @@ package org.example;
 import org.openqa.selenium.By;
 
 public class HomePage extends Utils
+
 {
 public void clickOnRegisterButton(){
     clickOnElement(By.xpath("//a[@class='ico-register']"));
@@ -13,4 +14,8 @@ public void clickOnComputersMenu(){
 public void clickOnNewsDetailsButton(){
     clickOnElement(By.xpath("//div[@class='news-items']/div[2]/div[3]/a[@href='/nopcommerce-new-release']"));
 }
+public void clickOnCategoryButton(String category){
+    clickOnElement(By.linkText(category));
+}
+
 }

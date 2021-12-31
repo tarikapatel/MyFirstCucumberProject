@@ -1,5 +1,6 @@
 package org.example;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,6 +16,12 @@ public class MyStepDefs {
     ProductEmailAFriend productEmailAFriend = new ProductEmailAFriend();
     Utils utils = new Utils();
     CategoryURLPage categoryURLPage = new CategoryURLPage();
+    ShoppingCartPage shoppingCartPage = new ShoppingCartPage();
+    Checkout checkout =new Checkout();
+    CheckoutSuccessfully checkoutSuccessfully = new CheckoutSuccessfully();
+    FacebookTabNewPage facebookTabNewPage = new FacebookTabNewPage();
+    AlertPopUpBox alertPopUpBox = new AlertPopUpBox();
+    NewsOnlineStore newsOnlineStore = new NewsOnlineStore();
 
     //Steps for user register successfully
     @Given("user is on registration page")
@@ -148,13 +155,14 @@ public class MyStepDefs {
         //verify user has successfully sent the email
         productEmailAFriend.verifyUserHasSuccessfullySentEmailToAFriend();
     }
-
+//Navigate to Category page
     @Given("I am on homepage")
     public void i_am_on_homepage() {
 
     }
     @When("I click on {string} button")
     public void i_click_on_button(String category) {
+        System.out.println("clicking on :" + category);
         homePage.clickOnCategoryButton(category);
     }
     @Then("I should able to verify the {string} accordingly")
@@ -164,5 +172,114 @@ public class MyStepDefs {
     @Then("I should be able to verify the page title as {string} accordingly")
     public void i_should_be_able_to_verify_the_page_title_as_accordingly(String text) {
         categoryURLPage.verifyCategoryTitle(text);
+    }
+    @And("I click on the {string} button")
+    public void iClickOnTheButton(String sub_category) {
+        homePage.clickOnSubCategory(sub_category);
+    }
+
+
+
+  //Checkout Scenario
+    @When("select Build it features")
+    public void select_build_it_features() {
+        buildYourOwnComputer.userSelectBuildItFeatures();
+    }
+    @When("click on the Add To Cart button")
+    public void click_on_the_add_to_cart_button() {
+        buildYourOwnComputer.clickOnAddToCartButton();
+    }
+    @When("user click on shopping cart")
+    public void user_click_on_shopping_cart() {
+        buildYourOwnComputer.clickOnShoppingCart();
+    }
+    @When("user click on the terms and conditions checkbox")
+    public void user_click_on_the_terms_and_conditions_checkbox() {
+        shoppingCartPage.clickOnTermsAndConditionCheckBox();
+    }
+    @When("user click on checkout button")
+    public void user_click_on_checkout_button() {
+        shoppingCartPage.clickOnCheckOutButton();
+    }
+    @When("user enters all the mandatory fields in Billing address")
+    public void user_enters_all_the_mandatory_fields_in_billing_address() {
+        checkout.entersMandatoryFieldForBillingAddress();
+    }
+    @When("click on the continue button")
+    public void click_on_the_continue_button() {
+        checkout.clickOnTheContinueButton();
+    }
+    @When("user choose the mandatory shipping method option")
+    public void user_choose_the_mandatory_shipping_method_option() {
+        checkout.shippingMethodOption();
+    }
+    @When("click on continue button")
+    public void click_on_continue_button() {
+        checkout.clickOnContinueButton();
+    }
+    @When("user select the credit card payment method option")
+    public void user_select_the_credit_card_payment_method_option() {
+        checkout.paymentMethod();
+        checkout.clickOnPaymentMethodContinueButton();
+    }
+    @When("enter payment card information")
+    public void enter_payment_card_information() {
+        checkout.cardDetails();
+    }
+    @When("click on payment continue button")
+    public void click_on_payment_continue_button() {
+        checkout.clickOnPaymentContinueButton();
+    }
+    @When("user click on confirm button")
+    public void user_click_on_confirm_button() {
+        checkout.clickOnConfirmButton();
+    }
+    @Then("user should be able to checkout successfully")
+    public void user_should_be_able_to_checkout_successfully() {
+        checkoutSuccessfully.verifyUserHasCheckoutSuccessfully();
+    }
+
+    // On clicking facebook - facebook url opens in new tab
+    @Given("User is on the home page")
+    public void user_is_on_the_home_page() {
+    homePage.userIsOnHomePage();
+    }
+    @When("user click on the facebook button")
+    public void user_click_on_the_facebook_button() {
+        homePage.userClickOnFacebookButton();
+    }
+    @Then("user should able to verify it has open into another tab with the URL")
+    public void user_should_able_to_verify_it_has_open_into_another_tab_with_the_url() {
+        facebookTabNewPage.userShouldBeAbleToVerifyTheURLInNewTab();
+    }
+
+    //Alert pop-up box
+
+    @When("user clicks on vote")
+    public void user_clicks_on_vote() {
+        homePage.userClickOnVoteButton();
+    }
+    @When("alert pop up message box appears")
+    public void alert_pop_up_message_box_appears() {
+        alertPopUpBox.verifyAlertMessageFromPopUpWindow();
+    }
+    @Then("user should able to click OK button")
+    public void user_should_able_to_click_ok_button() {
+        alertPopUpBox.handleOkButton();
+    }
+
+
+    // New online store is open title and comment
+
+    @When("click on the details button under news for new online store is open")
+    public void click_on_the_details_button_under_news_for_new_online_store_is_open() {
+        homePage.clickOnTheDetailsButton();
+        newsOnlineStore.verifyUserIsOnNewsOnlineStoreCommentPage();
+    }
+
+
+    @Then("user should be able to see the comment in the last of the comment list.")
+    public void user_should_be_able_to_see_the_comment_in_the_last_of_the_comment_list() {
+        newsOnlineStore.verifyNewlyAddedCommentAppearsLastInTheCommentList();
     }
 }

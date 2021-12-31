@@ -1,6 +1,6 @@
 Feature: Navigate to category pages
 
-  @test
+  @smoke
   Scenario Outline: As a user , when I click on menu category button Then I should be able to navigate to correct menu
 
     Given I am on homepage

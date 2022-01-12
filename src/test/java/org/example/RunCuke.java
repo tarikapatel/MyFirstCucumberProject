@@ -8,4 +8,5 @@ import org.junit.runner.RunWith;
 @CucumberOptions(features = ".", tags = "@test and not @smoke and not @regression", plugin =  { "pretty", "html:target/cucumber/report.html" } )
 //to run multiple tags together to use @test or @smoke
 public class RunCuke {
+    
 }
